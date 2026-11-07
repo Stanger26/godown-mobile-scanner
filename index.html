@@ -7,36 +7,54 @@
   <title>Godown Mobile Scanner</title>
   <style>
     * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh; padding: 24px;
-      display: grid; place-items: center;
-      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-      background: #f1f5f9; color: #0f172a;
-    }
-    main {
-      width: min(100%, 440px); padding: 28px 22px;
-      border-radius: 20px; background: white;
-      box-shadow: 0 12px 35px rgba(15, 23, 42, .09);
-      text-align: center;
-    }
-    .mark { font-size: 42px; }
-    h1 { margin: 12px 0 8px; font-size: 25px; }
-    p { color: #475569; line-height: 1.55; }
-    .status {
-      display: inline-block; margin-top: 12px; padding: 8px 12px;
-      border-radius: 999px; background: #dcfce7; color: #166534;
-      font-size: 14px; font-weight: 650;
-    }
-    small { display: block; margin-top: 22px; color: #64748b; }
+    body { margin: 0; min-height: 100vh; padding: 20px; font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: #f1f5f9; color: #0f172a; }
+    main { width: min(100%, 460px); margin: 20px auto; padding: 24px 20px; border-radius: 20px; background: #fff; box-shadow: 0 12px 35px rgba(15,23,42,.09); }
+    header { text-align: center; margin-bottom: 24px; }
+    .mark { font-size: 38px; }
+    h1 { margin: 8px 0 4px; font-size: 24px; }
+    .sub { margin: 0; color: #64748b; font-size: 14px; }
+    h2 { margin: 0 0 14px; font-size: 18px; }
+    label { display: block; margin: 14px 0 6px; font-size: 14px; font-weight: 650; }
+    input { width: 100%; padding: 13px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font: inherit; font-size: 16px; }
+    button { width: 100%; padding: 14px; border: 0; border-radius: 10px; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer; }
+    .primary { margin-top: 18px; background: #1d4ed8; color: white; }
+    .mode { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 18px; }
+    .mode button { background: #e2e8f0; color: #334155; }
+    .mode button.selected { background: #172554; color: white; }
+    .camera { min-height: 220px; display: grid; place-items: center; padding: 18px; border: 2px dashed #cbd5e1; border-radius: 14px; background: #f8fafc; text-align: center; color: #64748b; }
+    .camera span { display: block; font-size: 42px; margin-bottom: 8px; }
+    .note { margin: 16px 0 0; padding: 11px 12px; border-radius: 10px; background: #eff6ff; color: #1e40af; font-size: 13px; line-height: 1.45; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
   <main>
-    <div class="mark" aria-hidden="true">📦</div>
-    <h1>Godown Mobile Scanner</h1>
-    <p>Your mobile inventory scanner page has been created.</p>
-    <div class="status">Page loaded successfully</div>
-    <small>Camera scanning and staff sign-in will be added in the next steps.</small>
+    <header>
+      <div class="mark" aria-hidden="true">📦</div>
+      <h1>Godown Scanner</h1>
+      <p class="sub">Mobile inventory management</p>
+    </header>
+
+    <section id="signIn">
+      <h2>Staff sign-in</h2>
+      <label for="staffId">Your staff ID</label>
+      <input id="staffId" autocomplete="username" placeholder="Enter your staff ID">
+      <label for="staffPin">Personal PIN</label>
+      <input id="staffPin" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Enter your PIN">
+      <button class="primary" type="button" disabled>Sign in — setup pending</button>
+      <p class="note">Individual staff accounts will be connected securely to your inventory system before sign-in is enabled.</p>
+    </section>
+
+    <section id="scanner" class="hidden">
+      <h2>Choose stock movement</h2>
+      <div class="mode">
+        <button type="button" class="selected">Stock In</button>
+        <button type="button">Stock Out</button>
+      </div>
+      <h2>Scan product barcode</h2>
+      <div class="camera"><div><span>📷</span>Camera scanner will appear here</div></div>
+      <p class="note">The scanner will identify the product before any stock quantity is changed.</p>
+    </section>
   </main>
 </body>
 </html>
